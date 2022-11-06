@@ -1,48 +1,37 @@
 <?php
 
-$dice = rand(1, 6);
-$score = $dice;
-echo "Welcome to Piglet!";
-echo PHP_EOL;
-echo "You rolled a {$dice}!";
-echo PHP_EOL;
-if($dice == 1) {
-    echo "You lost. You got 0 points.";
-    echo PHP_EOL;
-    exit;
-}
+class Piglet {
+    
+    public $score;
 
-while(true) {
-
-    $dice = rand(1, 6);
-
-    $selection = readline("Roll again? yes or no? ");
-    echo PHP_EOL;
-    if($selection == "yes") {
-        echo "You rolled a {$dice}!";
-        echo PHP_EOL;
-    } else if($selection == "no") {
-        echo "You got {$score} points.";
-        echo PHP_EOL;
-        exit;
+    public function __constructor($score) {
+        $this->score = $score;
     }
 
-    if($dice == 2) {
-        $score = $score + 2;
-    } else if($dice == 3) {
-        $score = $score + 3;
-    } else if($dice == 4) {
-        $score = $score + 4;
-    } else if($dice == 5) {
-        $score = $score + 5;
-    } else if($dice == 6) {
-        $score = $score + 6;
-    } else if($dice == 1) {
-        echo "You lost. You got 0 points.";
-        echo PHP_EOL;
-        exit;
+    public function playPiglet() {
+
+        echo "Welcome to Piglet!" . PHP_EOL;
+
+        while (true) {
+
+            $dice = rand(1, 6);
+            echo "You rolled a $dice!" . PHP_EOL;
+            if($dice == 1) {
+                echo "You lost. You got 0 points." . PHP_EOL;
+                exit;
+            }
+
+            $this->score+=$dice;
+
+            $selection = readline("Roll again? yes or no? ");
+            echo PHP_EOL;
+            if ($selection !== "yes") {
+                echo "You got {$this->score} points." . PHP_EOL;
+                exit;
+            }
+        }
     }
 }
 
-
-
+$game = new Piglet();
+echo $game->playPiglet();
