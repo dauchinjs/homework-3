@@ -22,5 +22,5 @@
 //$swapping = new Points();
 //$swapping->point1 = readline("Enter first point ");
 //$swapping->point2 = readline("Enter second point ");
-//echo $swapping->swapPoints(2, 3);
+//echo $swapping->swapPoints();
 
